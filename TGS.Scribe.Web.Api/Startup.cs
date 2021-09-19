@@ -21,7 +21,8 @@ namespace TGS.Scribe.Web.Api
 
             builder.ConfigurationBuilder
                 .AddEnvironmentVariables()
-                .AddJsonFile(Path.Combine(context.ApplicationRootPath, $"settings{context.EnvironmentName}.json"), optional: true, reloadOnChange: false);
+                .AddJsonFile(Path.Combine(context.ApplicationRootPath, "settings.json"), optional: true, reloadOnChange: false)
+                .AddJsonFile(Path.Combine(context.ApplicationRootPath, "local.settings.json"), optional: true, reloadOnChange: false);
         }
     }
 }

@@ -1,0 +1,35 @@
+@import "bootstrap/scss/bootstrap.scss";
+
+form {
+    display: inline-block;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    vertical-align: top;
+}
+
+input {
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+
+input[aria-invalid=true] {
+    border-color: red;
+}
+
+.hint {
+    display: block;
+    color: grey;
+    font-style: italic;
+    font-size: smaller
+}
+
+.error {
+    display: block;
+    color: red;
+    font-style: italic;
+    font-size: smaller
+}
