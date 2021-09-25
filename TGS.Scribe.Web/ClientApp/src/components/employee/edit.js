@@ -1,16 +1,24 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { employeeSchema } from '../schemas/employee';
+import { employeeService } from "../services/employeeService";
 
-export const EmployeeAdd = () => {
+export const EmployeeEdit = (props) => {
+  const [employeeId] = useState(props.match.params.id);
   const resolver = yupResolver(employeeSchema);
-  const { formState: { errors }, handleSubmit, register } = useForm({
+  const { formState: { errors }, handleSubmit, register, reset } = useForm({
     resolver: resolver,
     criteriaMode: 'all'
   });
 
+  useEffect(() => {
+    const data = employeeService.getById(employeeId);
+    reset(data);
+  }, [employeeId, reset]);
+
   const onSubmit = (formData, e) => {
+    debugger;
     console.log(formData, e);
   }
 
@@ -20,22 +28,16 @@ export const EmployeeAdd = () => {
 
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit, onError)} autoComplete="off" className="w-75">
-      <label htmlFor="employeeNumber">Employee Number</label>
-      <span className='hint'>Please enter a unique ID for this person.  This ID cannot be changed afterwards.</span>
-      <input name="employeeNumber"
-        type="text"
-        className="w-100"
-        aria-invalid={errors.employeeNumber ? "true" : "false"}
-        {
-          ...register('employeeNumber')
-        }
-      />
-      <p>
-        {errors.employeeNumber && (
-          <span className="error" role="alert">{errors.employeeNumber.message}</span>
-        )}
-      </p>
-
+      <div>
+        <div className="w-50 d-inline-block">Employee Number:</div>
+        <span>{employeeId}</span>
+        <input name="employeeNumber"
+          type="hidden" {
+            ...register('employeeNumber')
+          }
+        />
+      </div>
+      <br />
       <label htmlFor="firstName">First Name</label>
       <input name="firstName"
         type="text"
@@ -72,7 +74,7 @@ export const EmployeeAdd = () => {
         className="w-100"
         aria-invalid={errors.email ? "true" : "false"}
         {
-          ...register('email')
+          ...register('email',)
         }
       />
       <p>

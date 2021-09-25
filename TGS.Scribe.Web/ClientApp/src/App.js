@@ -4,7 +4,9 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
+
 import { EmployeeAdd } from './components/employee/add';
+import { EmployeeEdit } from './components/employee/edit';
 import { EmployeeDetails } from './components/employee/details';
 
 export default class App extends Component {
@@ -17,7 +19,7 @@ export default class App extends Component {
         <Route path='/admin' component={Counter} />
         <Route path='/service' component={FetchData} />
         <Route path='/employees/add' component={EmployeeAdd} />
-        <Route path='/employees/edit/:id' component={EmployeeAdd} />
+        <Route path='/employees/edit/:id' component={EmployeeEdit} />
         <Route path='/employees/details/:id' component={EmployeeDetails} />
       </Layout>
     );
