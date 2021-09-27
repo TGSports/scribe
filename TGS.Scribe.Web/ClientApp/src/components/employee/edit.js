@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { employeeSchema } from '../schemas/employee';
@@ -6,6 +7,8 @@ import { employeeService } from "../services/employeeService";
 
 export const EmployeeEdit = (props) => {
   const [employeeId] = useState(props.match.params.id);
+  const history = useHistory();
+
   const resolver = yupResolver(employeeSchema);
   const { formState: { errors }, handleSubmit, register, reset } = useForm({
     resolver: resolver,
@@ -24,6 +27,11 @@ export const EmployeeEdit = (props) => {
 
   const onError = (errors, e) => {
     console.log(errors, e);
+  }
+
+  const onCancel = (e) => {
+    e.preventDefault();
+    history.goBack();
   }
 
   return (
@@ -92,9 +100,10 @@ export const EmployeeEdit = (props) => {
       />
 
       <br />
-
-      <button className="btn btn-primary" type="submit">Save</button>
-
+      <div className="d-flex justify-content-end">
+        <button className="btn btn-primary mr-2" type="submit">Save</button>
+        <button className="btn btn-secondary" onClick={onCancel}>Cancel</button>
+      </div>
     </form>
   );
 }

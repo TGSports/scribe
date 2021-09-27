@@ -18,7 +18,7 @@ function getById(id) {
   return {
     firstName: "foo",
     lastName: "bar",
-    employeeNumber: "foobar",
+    employeeNumber: id,
     email: "foo@bar.com"
   };
   //return fetchWrapper.get(`${baseUrl}/${id}`);
