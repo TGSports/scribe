@@ -11,7 +11,28 @@ export const employeeService = {
 const baseUrl = `/users`;
 
 function getAll() {
-  return fetchWrapper.get(baseUrl);
+  return [
+    {
+      firstName: "foo",
+      lastName: "bar",
+      employeeNumber: "123",
+      email: "foo@bar.com"
+    },
+    {
+      firstName: "bar",
+      lastName: "foo",
+      employeeNumber: "456",
+      email: "bar@foo.com"
+    },
+    {
+      firstName: "Rick",
+      lastName: "Sanchez",
+      employeeNumber: "789",
+      email: "rick@sanchez.com"
+    },
+  ];
+
+  //return fetchWrapper.get(baseUrl);
 }
 
 function getById(id) {
